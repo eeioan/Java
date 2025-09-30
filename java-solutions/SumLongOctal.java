@@ -12,10 +12,11 @@ public class SumLongOctal {
 
                 if (Character.isWhitespace(symbol)) {
                     if (sBuilder.length() > 0) {
-                        long number = Long.parseUnsignedLong(sBuilder.toString(), isOctal ? 8 : 10);
-                        if (negative) number = -number;
+                        long number = Long.parseUnsignedLong(sBuilder.toString(), isOctal ? 8 : 10); // опрашивает isOctal
+                        if (negative) {                                                              // if false, то 10 остается
+                            number = -number;                                                       // true меняет на 8
+                        }
                         totalSum += number;
-
                         sBuilder.setLength(0);
                         negative = false;
                         isOctal = false;
@@ -32,14 +33,15 @@ public class SumLongOctal {
                     isOctal = false;
                 }
             }
-
+            // обработка последнего числа встроке, можно сделать через отдельный метод и вызывать его в двух местах 
             if (sBuilder.length() > 0) {
                 long number = Long.parseUnsignedLong(sBuilder.toString(), isOctal ? 8 : 10);
-                if (negative) number = -number;
+                if (negative) {
+                    number = -number;
+                }
                 totalSum += number;
             }
         }
-
         System.out.println(totalSum);
     }
 }
