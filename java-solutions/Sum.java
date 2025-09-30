@@ -1,37 +1,30 @@
-public class Sum { 
+public class Sum {
     public static void main(String[] args) {
         int totalSum = 0;
-        
-        for (String arg : args ) {
-            StringBuilder sBuilder = new StringBuilder(); //string builder собирает символы в строчку через
-            boolean negative = false; 
+
+        for (String arg : args) {
+            StringBuilder sBuilder = new StringBuilder();
+
             for (int j = 0; j < arg.length(); j++) {
                 char symbol = arg.charAt(j);
-                if (Character.isWhitespace(symbol)) {
-                    if (sBuilder.length() > 0 ) {
-                        int number = Integer.parseInt(sBuilder.toString()); // 
-                        if (negative) number = -number;
-                        totalSum += number;
-                        sBuilder.setLength(0);
-                        negative = false; 
-                    }
-                } else if (symbol == '-' && sBuilder.length() == 0) {
-                    negative = true;
-                } else if (  '0' <= symbol && symbol <= '9') { // java не умеет в двойное сравнение (((
+                // Просто собираем все символы, которые могут быть частью числа
+                if (Character.isDigit(symbol) || symbol == '-') {
                     sBuilder.append(symbol);
                 } else {
-                    sBuilder.setLength(0); //отсекаем лищние символы
-                    negative = false ;
+                    // Любой другой символ = конец числа
+                    if (sBuilder.length() > 0) {
+                        totalSum += Integer.parseInt(sBuilder.toString());
+                        sBuilder.setLength(0);
+                    }
                 }
             }
-            if (sBuilder.length() > 0 ) {
-                int number = Integer.parseInt(sBuilder.toString());
-                if (negative) number = -number;
-                    totalSum += number;
-                    sBuilder.setLength(0);
-                    negative = false; 
-                }
+
+            // Добавляем последний элемент, если строка закончилась на число
+            if (sBuilder.length() > 0) {
+                totalSum += Integer.parseInt(sBuilder.toString());
+            }
         }
+
         System.out.println(totalSum);
     }
 }
