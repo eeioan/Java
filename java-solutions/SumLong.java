@@ -10,26 +10,24 @@ public class SumLong {
 
                 if (Character.isWhitespace(symbol)) {
                     if (sBuilder.length() > 0) {
-                        try {
-                            long number = Long.parseLong(sBuilder.toString());
+                        String candidate = sBuilder.toString();
+                        if (candidate.matches("-?\\d+")) { //регулярка для проверки чисел
+                            long number = Long.parseLong(candidate);
                             totalSum += number;
-                        } catch (NumberFormatException e) {
-                            // если не число — просто игнорируем
                         }
                         sBuilder.setLength(0);
                     }
                 } else {
-                    sBuilder.append(symbol); // просто добавляем всё, что не пробел
+                    sBuilder.append(symbol);
                 }
             }
 
-            // добавляем последнее число, если строка закончилась на число
+            // обработка последнего числа
             if (sBuilder.length() > 0) {
-                try {
-                    long number = Long.parseLong(sBuilder.toString());
+                String candidate = sBuilder.toString();
+                if (candidate.matches("-?\\d+")) {
+                    long number = Long.parseLong(candidate);
                     totalSum += number;
-                } catch (NumberFormatException e) {
-                    // игнорируем
                 }
             }
         }
