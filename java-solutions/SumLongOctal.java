@@ -19,13 +19,13 @@ public class SumLongOctal {
                 int radix = 10;
                 if (i < arg.length() && (arg.charAt(i - 1) == 'o' || arg.charAt(i - 1) == 'O')) {
                     radix = 8;
-                    sBuilder.delete(sBuilder.length() - 1, sBuilder.length());
+//                    sBuilder.delete(sBuilder.length() - 1, sBuilder.length());
                     i++;
                 }
-                if (!sBuilder.isEmpty() && sBuilder.charAt(0) == '-') {
+                if (radix == 10) {
                     totalSum += Long.parseLong(sBuilder.toString(), radix);
                 } else {
-                    totalSum += Long.parseUnsignedLong(sBuilder.toString().substring(0, sBuilder.length() - 1), radix); //если переполнен не - Long
+                    totalSum += Long.parseUnsignedLong(sBuilder.substring(0, sBuilder.length() - 1), radix); //если переполнен не - Long
                 }
             }
         }
