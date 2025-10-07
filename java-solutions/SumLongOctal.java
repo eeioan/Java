@@ -19,7 +19,6 @@ public class SumLongOctal {
                 int radix = 10;
                 if ((arg.charAt(i - 1) == 'o' || arg.charAt(i - 1) == 'O')) {
                     radix = 8;
-//                    sBuilder.delete(sBuilder.length() - 1, sBuilder.length());
                     i++;
                 }
                 if (radix == 10) {
