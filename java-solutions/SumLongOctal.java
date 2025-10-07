@@ -25,7 +25,7 @@ public class SumLongOctal {
                 if (!sBuilder.isEmpty() && sBuilder.charAt(0) == '-') {
                     totalSum += Long.parseLong(sBuilder.toString(), radix);
                 } else {
-                    totalSum += Long.parseUnsignedLong(sBuilder.toString(), radix); //если переполнен не - Long
+                    totalSum += Long.parseUnsignedLong(sBuilder.toString().substring(0, sBuilder.length() - 1), radix); //если переполнен не - Long
                 }
             }
         }
