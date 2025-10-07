@@ -19,6 +19,9 @@ public class ReverseSum {
                 matrix = Arrays.copyOf(matrix, newRows);
                 rowSums = Arrays.copyOf(rowSums, newRows);
                 actualCols = Arrays.copyOf(actualCols, newRows);
+                for (int k = matrix.length / 2; k < newRows; k++) {
+                    matrix[k] = new int[matrix[0].length];
+                }
             }
 
             if (!lineScanner.hasNextInt()) {
