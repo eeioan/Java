@@ -7,21 +7,20 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 
-public class WordStat {
+public class WordStatLengthPrefix {
     public static void main(String[] args) throws IOException {
-      
         String inputFile = args[0];
         String outputFile = args[1];
 
         StringBuilder buffer = new StringBuilder();
         char[] block = new char[1024];
         int read;
-        String[] words = new String[4];
+
+        String[] prefixes = new String[4];
         int[] counts = new int[4];
         int n = 0;
-
-        // Чтение файла в UTF-8
         try (Reader reader = new InputStreamReader(new FileInputStream(inputFile), StandardCharsets.UTF_8)) {
             while ((read = reader.read(block)) != -1) {
                 for (int i = 0; i < read; i++) {
@@ -29,38 +28,43 @@ public class WordStat {
                     if (Character.isLetter(c) || c == '\'' || Character.getType(c) == Character.DASH_PUNCTUATION) {
                         buffer.append(c);
                     } else {
-                        if (buffer.length() > 0) {
+                        if (buffer.length() > 1) {
                             String word = buffer.toString().toLowerCase();
-                            buffer.setLength(0);
+                            String prefix = word.substring(0, word.length() / 2);
 
                             int idx = -1;
                             for (int j = 0; j < n; j++) {
-                                if (words[j].equals(word)) {
+                                if (prefixes[j].equals(prefix)) {
                                     idx = j;
                                     break;
                                 }
                             }
-
                             if (idx != -1) {
                                 counts[idx]++;
                             } else {
-                                if (n >= words.length) {
-                                    words = Arrays.copyOf(words, words.length * 2);
+                                if (n >= prefixes.length) {
+                                    prefixes = Arrays.copyOf(prefixes, prefixes.length * 2);
                                     counts = Arrays.copyOf(counts, counts.length * 2);
                                 }
-                                words[n] = word;
+                                prefixes[n] = prefix;
                                 counts[n] = 1;
                                 n++;
                             }
                         }
+                        buffer.setLength(0);
                     }
                 }
             }
+        }
+        String[] resultPrefixes = Arrays.copyOf(prefixes, n);
+        int[] resultCounts = Arrays.copyOf(counts, n);
+        Integer[] order = new Integer[n];
+        for (int i = 0; i < n; i++) order[i] = i;
+        Arrays.sort(order, Comparator.comparingInt(i -> resultPrefixes[i].length()));
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8)) {
-            for (int i = 0; i < n; i++) {
-                writer.write(words[i] + " " + counts[i] + "\n");
+            for (int i : order) {
+                writer.write(resultPrefixes[i] + " " + resultCounts[i] + "\n");
             }
         }
     }
-}
 }
