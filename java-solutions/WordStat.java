@@ -10,18 +10,14 @@ import java.util.Arrays;
 
 public class WordStat {
     public static void main(String[] args) throws IOException {
-      
         String inputFile = args[0];
         String outputFile = args[1];
-
         StringBuilder buffer = new StringBuilder();
         char[] block = new char[1024];
         int read;
         String[] words = new String[4];
         int[] counts = new int[4];
         int n = 0;
-
-        // Чтение файла в UTF-8
         try (Reader reader = new InputStreamReader(new FileInputStream(inputFile), StandardCharsets.UTF_8)) {
             while ((read = reader.read(block)) != -1) {
                 for (int i = 0; i < read; i++) {
