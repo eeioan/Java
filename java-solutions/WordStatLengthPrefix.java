@@ -25,8 +25,9 @@ public class WordStatLengthPrefix {
                     } else if (buffer.length() > 1) {
                         String word = buffer.toString().toLowerCase();
                         String prefix = word.substring(0, word.length() / 2);
-                        if (!prefixCounts.containsKey(prefix)) prefixCounts.put(prefix, 1);
-                        else prefixCounts.put(prefix, prefixCounts.get(prefix) + 1);
+                        prefixCounts.put(prefix, prefixCounts.getOrDefault(prefix, 0) + 1);
+//                        if (!prefixCounts.containsKey(prefix)) prefixCounts.put(prefix, 1);
+//                        else prefixCounts.put(prefix, prefixCounts.get(prefix) + 1);
                         buffer.setLength(0);
                     } else {
                         buffer.setLength(0);
