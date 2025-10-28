@@ -1,9 +1,10 @@
 import java.util.*;
+import java.nio.charset.*;
 
 public class ReverseSum {
     public static void main(String[] args) {
         try {
-            MyScanner rowScanner = new MyScanner(System.in);
+            MyScanner rowScanner = new MyScanner(System.in, StandardCharsets.UTF_8);
             ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
 
             while (rowScanner.hasNextLine()) {

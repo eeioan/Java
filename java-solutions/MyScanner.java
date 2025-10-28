@@ -1,4 +1,12 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.nio.charset.Charset;
 
 public class MyScanner implements AutoCloseable {
     private final Reader reader;
@@ -8,7 +16,7 @@ public class MyScanner implements AutoCloseable {
     private static final int BUFFER_CAPACITY = 8192;
     private boolean closed;
 
-    public MyScanner(InputStream inputStream) {
+    public MyScanner(InputStream inputStream, Charset charset) {
         this.reader = new InputStreamReader(inputStream);
         this.buffer = new char[BUFFER_CAPACITY];
         this.bufferPos = 0;
@@ -16,7 +24,7 @@ public class MyScanner implements AutoCloseable {
         this.closed = false;
     }
 
-    public MyScanner(String text) {
+    public MyScanner(String text, Charset charset) {
         this.reader = new StringReader(text);
         this.buffer = new char[BUFFER_CAPACITY];
         this.bufferPos = 0;
