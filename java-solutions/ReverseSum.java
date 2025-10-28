@@ -1,66 +1,61 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class ReverseSum {
     public static void main(String[] args) {
-        Scanner rowScanner = new Scanner(System.in);
+        try {
+            MyScanner rowScanner = new MyScanner(System.in);
+            ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
 
-        int[][] matrix = new int[4][4]; // ну или [1][1]
-        int[] rowSums = new int[4];
-        int[] colSums = new int[4];
-        int[] actualCols = new int[4];
-        int i = 0; 
-        while (rowScanner.hasNextLine()) {
-            String line = rowScanner.nextLine();
-            Scanner lineScanner = new Scanner(line);
-            
-            if (i >= matrix.length - 1) {
-                int newRows = matrix.length * 2;
-                matrix = Arrays.copyOf(matrix, newRows);
-                rowSums = Arrays.copyOf(rowSums, newRows);
-                actualCols = Arrays.copyOf(actualCols, newRows);
-                for (int k = matrix.length / 2; k < newRows; k++) {
-                    matrix[k] = new int[matrix[0].length];
-                }
-            }
-
-            if (!lineScanner.hasNextInt()) {
-                actualCols[i] = 0;
-                i++;
-                lineScanner.close();
-                continue;
-            }
-
-            int j = 0;
-            while (lineScanner.hasNextInt()) {
-                int num = lineScanner.nextInt();
-                if (j >= matrix[i].length - 1) {
-                    int newCols = matrix[i].length * 2;
-                    for (int k = 0; k < matrix.length; k++) {
-                        matrix[k] = Arrays.copyOf(matrix[k], newCols);
+            while (rowScanner.hasNextLine()) {
+                String line = rowScanner.nextLine();
+                
+                ArrayList<Integer> row = new ArrayList<>();
+                
+                if (!line.isEmpty()) {
+                    MyScanner lineScanner = new MyScanner(line);
+                    
+                    while (lineScanner.hasNext()) {
+                        String token = lineScanner.next();
+                        try {
+                            int num = Integer.parseInt(token);
+                            row.add(num);
+                        } catch (NumberFormatException ignored) {}
                     }
-                    colSums = Arrays.copyOf(colSums, newCols);
+                    lineScanner.close();
                 }
-                matrix[i][j] = num;
-                rowSums[i] += num;
-                colSums[j] += num;
-                j++;
+                
+                matrix.add(row);
             }
-            actualCols[i] = j; // работаем только с заполнеными ячейками
-            i++;
-            lineScanner.close();
-        }
-        rowScanner.close();
-        for (int r = 0; r < i; r++) {
-            if (actualCols[r] == 0) {
+            rowScanner.close();
+
+            int numRows = matrix.size();
+            int numCols = matrix.stream().mapToInt(ArrayList::size).max().orElse(0);
+
+            int[] rowSums = new int[numRows];
+            int[] colSums = new int[numCols];
+
+            for (int r = 0; r < numRows; r++) {
+                ArrayList<Integer> row = matrix.get(r);
+                for (int c = 0; c < row.size(); c++) {
+                    int val = row.get(c);
+                    rowSums[r] += val;
+                    if (c < colSums.length) {
+                        colSums[c] += val;
+                    }
+                }
+            }
+
+            for (int r = 0; r < numRows; r++) {
+                ArrayList<Integer> row = matrix.get(r);
+                for (int c = 0; c < row.size(); c++) {
+                    if (c > 0) System.out.print(" ");
+                    int sum = rowSums[r] + colSums[c] - row.get(c);
+                    System.out.print(sum);
+                }
                 System.out.println();
-                continue;
             }
-            for (int c = 0; c < actualCols[r]; c++) {
-                if (c > 0) System.out.print(" ");
-                System.out.print(rowSums[r] + colSums[c] - matrix[r][c]);
-            }
-            System.out.println();
+        }catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }
