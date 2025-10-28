@@ -1,12 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class MyScanner implements AutoCloseable {
     private final Reader reader;
@@ -15,13 +9,19 @@ public class MyScanner implements AutoCloseable {
     private int bufferSize;
     private static final int BUFFER_CAPACITY = 8192;
     private boolean closed;
+    private boolean isSystemIn;
 
     public MyScanner(InputStream inputStream, Charset charset) {
-        this.reader = new InputStreamReader(inputStream);
+        this.reader = new InputStreamReader(inputStream, charset);
         this.buffer = new char[BUFFER_CAPACITY];
         this.bufferPos = 0;
         this.bufferSize = 0;
         this.closed = false;
+        this.isSystemIn = (inputStream == System.in);
+    }
+
+    public MyScanner(InputStream inputStream) {
+        this(inputStream, StandardCharsets.UTF_8);
     }
 
     public MyScanner(String text, Charset charset) {
@@ -30,15 +30,21 @@ public class MyScanner implements AutoCloseable {
         this.bufferPos = 0;
         this.bufferSize = 0;
         this.closed = false;
+        this.isSystemIn = false;
+    }
+
+    public MyScanner(String text) {
+        this(text, StandardCharsets.UTF_8);
     }
 
     public MyScanner(File file) {
         try {
-            this.reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+            this.reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
             this.buffer = new char[BUFFER_CAPACITY];
             this.bufferPos = 0;
             this.bufferSize = 0;
             this.closed = false;
+            this.isSystemIn = false;
         } catch (IOException e) {
             throw new RuntimeException("Failed to create scanner for file: " + file.getName(), e);
         }
@@ -89,11 +95,24 @@ public class MyScanner implements AutoCloseable {
         }
     }
 
+    private boolean isDelimiter(char c) {
+        // Пробелы и управляющие символы
+        if (Character.isWhitespace(c)) {
+            return true;
+        }
+        // Скобки
+        int type = Character.getType(c);
+        if (type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION) {
+            return true;
+        }
+        return false;
+    }
+
     private void skipDelimiters() {
         try {
             while (hasMoreChars()) {
                 char c = peekChar();
-                if (Character.isDigit(c) || c == '-') {
+                if (!isDelimiter(c)) {
                     break;
                 }
                 readChar();
@@ -113,30 +132,64 @@ public class MyScanner implements AutoCloseable {
         }
     }
 
+    public boolean hasNextInt() {
+        try {
+            skipDelimiters();
+            if (!hasMoreChars()) {
+                return false;
+            }
+
+            char first = peekChar();
+            if (first == '-' || first == '+') {
+                // Проверяем, есть ли цифра после знака
+                int savedPos = bufferPos;
+                readChar(); // Пропускаем знак
+                
+                if (!hasMoreChars()) {
+                    bufferPos = savedPos;
+                    return false;
+                }
+                
+                char next = peekChar();
+                bufferPos = savedPos;
+                return Character.isDigit(next);
+            }
+            
+            return Character.isDigit(first);
+        } catch (Exception e) {
+            close();
+            return false;
+        }
+    }
+
     public String next() {
         try {
             skipDelimiters();
             if (!hasMoreChars()) return null;
-            
+
             StringBuilder sb = new StringBuilder();
             char firstChar = peekChar();
-            
-            if (firstChar == '-') {
+
+            if (firstChar == '-' || firstChar == '+') {
                 sb.append(readChar());
             }
-            
+
             while (hasMoreChars()) {
                 char c = peekChar();
                 if (!Character.isDigit(c)) break;
                 sb.append(readChar());
             }
-            
+
             return sb.length() == 0 ? null : sb.toString();
 
         } catch (Exception e) {
             close();
             return null;
         }
+    }
+
+    public String nextInt() {
+        return next();
     }
 
     public boolean hasNextLine() {
@@ -151,7 +204,7 @@ public class MyScanner implements AutoCloseable {
     public String nextLine() {
         try {
             if (!hasMoreChars()) return "";
-            
+
             StringBuilder sb = new StringBuilder();
             while (hasMoreChars()) {
                 char c = readChar();
@@ -159,8 +212,8 @@ public class MyScanner implements AutoCloseable {
                     break;
                 }
                 if (c == '\r') {
-                    if (hasMoreChars() && buffer[bufferPos] == '\n') {
-                        bufferPos++;
+                    if (hasMoreChars() && peekChar() == '\n') {
+                        readChar();
                     }
                     break;
                 }
@@ -178,10 +231,12 @@ public class MyScanner implements AutoCloseable {
         if (!closed) {
             closed = true;
             try {
-                reader.close();
+                if (!isSystemIn) {
+                    reader.close();
+                }
             } catch (IOException ignored) {
-
+                // Игнорируем ошибки при закрытии
+            }
         }
     }
-}
 }

@@ -1,62 +1,89 @@
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.io.IOException;
-import java.util.Arrays;
+import java.util.*;
 
 public class WordStat {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.err.println("Использование: java WordStat <входной_файл> <выходной_файл>");
+            return;
+        }
+
         String inputFile = args[0];
         String outputFile = args[1];
-        StringBuilder buffer = new StringBuilder();
-        char[] block = new char[1024];
-        int read;
-        String[] words = new String[4];
-        int[] counts = new int[4];
-        int n = 0;
-        try (Reader reader = new InputStreamReader(new FileInputStream(inputFile), StandardCharsets.UTF_8)) {
-            while ((read = reader.read(block)) != -1) {
-                for (int i = 0; i < read; i++) {
-                    char c = block[i];
-                    if (Character.isLetter(c) || c == '\'' || Character.getType(c) == Character.DASH_PUNCTUATION) {
-                        buffer.append(c);
-                    } else {
-                        if (buffer.length() > 0) {
-                            String word = buffer.toString().toLowerCase();
-                            buffer.setLength(0);
 
-                            int idx = -1;
-                            for (int j = 0; j < n; j++) {
-                                if (words[j].equals(word)) {
-                                    idx = j;
-                                    break;
-                                }
+        try {
+            Map<String, Integer> wordCount = new LinkedHashMap<>();
+            List<String> wordOrder = new ArrayList<>();
+
+            File file = new File(inputFile);
+            
+            try (MyScanner scanner = new MyScanner(file)) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    if (line == null) {
+                        break;
+                    }
+
+                    int i = 0;
+                    while (i < line.length()) {
+                        // Пропускаем не-буквы, не-апострофы и не-дефисы
+                        while (i < line.length()) {
+                            char c = line.charAt(i);
+                            if (isWordChar(c)) {
+                                break;
                             }
+                            i++;
+                        }
 
-                            if (idx != -1) {
-                                counts[idx]++;
+                        if (i >= line.length()) {
+                            break;
+                        }
+
+                        // Нашли начало слова
+                        StringBuilder word = new StringBuilder();
+                        while (i < line.length()) {
+                            char c = line.charAt(i);
+                            if (isWordChar(c)) {
+                                word.append(c);
+                                i++;
                             } else {
-                                if (n >= words.length) {
-                                    words = Arrays.copyOf(words, words.length * 2);
-                                    counts = Arrays.copyOf(counts, counts.length * 2);
-                                }
-                                words[n] = word;
-                                counts[n] = 1;
-                                n++;
+                                break;
+                            }
+                        }
+
+                        if (word.length() > 0) {
+                            String wordStr = word.toString().toLowerCase();
+                            
+                            if (!wordCount.containsKey(wordStr)) {
+                                wordOrder.add(wordStr);
+                                wordCount.put(wordStr, 1);
+                            } else {
+                                wordCount.put(wordStr, wordCount.get(wordStr) + 1);
                             }
                         }
                     }
                 }
             }
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8)) {
-            for (int i = 0; i < n; i++) {
-                writer.write(words[i] + " " + counts[i] + "\n");
+
+            try (BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8))) {
+                for (String word : wordOrder) {
+                    writer.write(word + " " + wordCount.get(word));
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                System.err.println("Ошибка записи в файл: " + e.getMessage());
             }
+
+        } catch (Exception e) {
+            System.err.println("Ошибка: " + e.getMessage());
         }
     }
-}
+
+    private static boolean isWordChar(char c) {
+        return Character.isLetter(c) || 
+               Character.getType(c) == Character.DASH_PUNCTUATION ||
+               c == '\'' || c == '-' || c == '—';
+    }
 }

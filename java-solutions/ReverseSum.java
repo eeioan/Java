@@ -13,7 +13,7 @@ public class ReverseSum {
                 ArrayList<Integer> row = new ArrayList<>();
                 
                 if (!line.isEmpty()) {
-                    MyScanner lineScanner = new MyScanner(line);
+                    MyScanner lineScanner = new MyScanner(line, StandardCharsets.UTF_8);
                     
                     while (lineScanner.hasNext()) {
                         String token = lineScanner.next();
