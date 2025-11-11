@@ -52,7 +52,7 @@ public class WordStat {
                             }
                         }
 
-                        if (word.length() > 0) {
+                        if (!word.isEmpty()) {
                             String wordStr = word.toString().toLowerCase();
                             
                             if (!wordCount.containsKey(wordStr)) {
