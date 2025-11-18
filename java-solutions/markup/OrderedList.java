@@ -1,4 +1,5 @@
 package markup;
+
 import java.util.List;
 
 public class OrderedList extends AbstractLists {
@@ -6,6 +7,7 @@ public class OrderedList extends AbstractLists {
     public OrderedList(List<ListItem> items) {
         super(items);
     }
+
     @Override
     public void toMarkdown(StringBuilder sb) {
         int index = 1;

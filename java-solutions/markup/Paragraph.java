@@ -1,7 +1,8 @@
 package markup;
+
 import java.util.List;
 
-public class Paragraph implements Lists  {
+public class Paragraph implements Lists {
     private final List<ListItemContent> elements;
 
     public Paragraph(List<ListItemContent> elements) {

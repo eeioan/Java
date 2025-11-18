@@ -1,5 +1,5 @@
 package markup;
 
-public interface ListItemContent extends Markup{
+public interface ListItemContent extends Markup {
 
 }
