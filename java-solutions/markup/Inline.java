@@ -18,7 +18,9 @@ public abstract class Inline implements ListItemContent {
     }
 
     protected abstract String openMark();
+
     protected abstract String openTex();
+
     protected abstract String closeTex();
 
     public void toTex(StringBuilder sb) {

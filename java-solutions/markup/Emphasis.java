@@ -12,10 +12,12 @@ public class Emphasis extends Inline {
     protected String openMark() {
         return "*";
     }
+
     @Override
     public String openTex() {
         return "\\emph{";
     }
+
     @Override
     public String closeTex() {
         return "}";

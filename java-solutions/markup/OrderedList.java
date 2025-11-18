@@ -19,11 +19,13 @@ public class OrderedList extends AbstractLists {
             index++;
         }
     }
-    protected String listMark(){
+
+    protected String listMark() {
         return null;
     }
+
     @Override
-    protected String listTex(){
+    protected String listTex() {
         return "enumerate";
     }
 }

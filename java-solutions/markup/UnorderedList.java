@@ -6,15 +6,14 @@ public class UnorderedList extends AbstractLists {
     public UnorderedList(List<ListItem> items) {
         super(items);
     }
+
     @Override
     protected String listMark() {
         return "* ";
-
-
     }
 
     @Override
-    protected String listTex(){
+    protected String listTex() {
         return "itemize";
     }
 }

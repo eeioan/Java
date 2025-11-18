@@ -13,11 +13,12 @@ class Strong extends Inline {
     }
 
     @Override
-    protected String openTex(){
+    protected String openTex() {
         return "\\textbf{";
     }
+
     @Override
-    protected String closeTex(){
+    protected String closeTex() {
         return "}";
     }
 }

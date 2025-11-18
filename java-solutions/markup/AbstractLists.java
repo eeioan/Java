@@ -4,8 +4,11 @@ import java.util.List;
 
 public abstract class AbstractLists implements Lists {
     protected final List<ListItem> items;
+
     protected abstract String listMark();
+
     protected abstract String listTex();
+
     public AbstractLists(List<ListItem> items) {
         this.items = items;
     }

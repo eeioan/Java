@@ -9,15 +9,17 @@ public class Strikeout extends Inline {
     }
 
     @Override
-    protected String openMark(){
+    protected String openMark() {
         return "~";
     }
+
     @Override
-    protected String openTex(){
+    protected String openTex() {
         return "\\textst{";
     }
+
     @Override
-    protected String closeTex(){
+    protected String closeTex() {
         return "}";
     }
 }
