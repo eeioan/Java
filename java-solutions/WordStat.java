@@ -27,7 +27,6 @@ public class WordStat {
 
                     int i = 0;
                     while (i < line.length()) {
-                        // Пропускаем не-буквы, не-апострофы и не-дефисы
                         while (i < line.length()) {
                             char c = line.charAt(i);
                             if (isWordChar(c)) {
@@ -39,8 +38,6 @@ public class WordStat {
                         if (i >= line.length()) {
                             break;
                         }
-
-                        // Нашли начало слова
                         StringBuilder word = new StringBuilder();
                         while (i < line.length()) {
                             char c = line.charAt(i);

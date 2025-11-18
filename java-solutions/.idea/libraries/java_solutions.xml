@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="java-solutions">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WsppTest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WordStatTest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SumTest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/FastReverseTest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ReverseTest.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

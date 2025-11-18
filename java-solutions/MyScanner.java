@@ -96,11 +96,11 @@ public class MyScanner implements AutoCloseable {
     }
 
     private boolean isDelimiter(char c) {
-        // Пробелы и управляющие символы
+
         if (Character.isWhitespace(c)) {
             return true;
         }
-        // Скобки
+
         int type = Character.getType(c);
         if (type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION) {
             return true;
@@ -141,9 +141,8 @@ public class MyScanner implements AutoCloseable {
 
             char first = peekChar();
             if (first == '-' || first == '+') {
-                // Проверяем, есть ли цифра после знака
                 int savedPos = bufferPos;
-                readChar(); // Пропускаем знак
+                readChar(); 
                 
                 if (!hasMoreChars()) {
                     bufferPos = savedPos;
@@ -235,7 +234,6 @@ public class MyScanner implements AutoCloseable {
                     reader.close();
                 }
             } catch (IOException ignored) {
-                // Игнорируем ошибки при закрытии
             }
         }
     }

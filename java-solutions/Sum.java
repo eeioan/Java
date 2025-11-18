@@ -7,11 +7,9 @@ public class Sum {
 
             for (int j = 0; j < arg.length(); j++) {
                 char symbol = arg.charAt(j);
-                // Просто собираем все символы, которые могут быть частью числа
                 if (Character.isDigit(symbol) || symbol == '-') {
                     sBuilder.append(symbol);
                 } else {
-                    // Любой другой символ = конец числа
                     if (sBuilder.length() > 0) {
                         totalSum += Integer.parseInt(sBuilder.toString());
                         sBuilder.setLength(0);
@@ -19,7 +17,6 @@ public class Sum {
                 }
             }
 
-            // Добавляем последний элемент, если строка закончилась на число
             if (sBuilder.length() > 0) {
                 totalSum += Integer.parseInt(sBuilder.toString());
             }
