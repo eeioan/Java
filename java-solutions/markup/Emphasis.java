@@ -12,13 +12,14 @@ public class Emphasis extends Inline {
     protected String openMark() {
         return "*";
     }
-
-
     @Override
-    public void toTex(StringBuilder sb) {
-        sb.append("\\emph{");
-        elemToTex(sb);
-        sb.append("}");
+    public String openTex() {
+        return "\\emph{";
     }
+    @Override
+    public String closeTex() {
+        return "}";
+    }
+
 }
 

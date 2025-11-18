@@ -14,13 +14,18 @@ public abstract class Inline implements ListItemContent {
         for (ListItemContent element : elements) {
             element.toMarkdown(sb);
         }
+        sb.append(openMark());
     }
 
     protected abstract String openMark();
+    protected abstract String openTex();
+    protected abstract String closeTex();
 
-    protected void elemToTex(StringBuilder sb) {
+    public void toTex(StringBuilder sb) {
+        sb.append(openTex());
         for (ListItemContent element : elements) {
             element.toTex(sb);
         }
+        sb.append(closeTex());
     }
 }

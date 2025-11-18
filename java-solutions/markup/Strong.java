@@ -8,16 +8,16 @@ class Strong extends Inline {
     }
 
     @Override
-    public void toMarkdown(StringBuilder sb) {
-        sb.append("__");
-        elemToMarkdown(sb);
-        sb.append("__");
+    protected String openMark() {
+        return "__";
     }
 
     @Override
-    public void toTex(StringBuilder sb) {
-        sb.append("\\textbf{");
-        elemToTex(sb);
-        sb.append("}");
+    protected String openTex(){
+        return "\\textbf{";
+    }
+    @Override
+    protected String closeTex(){
+        return "}";
     }
 }

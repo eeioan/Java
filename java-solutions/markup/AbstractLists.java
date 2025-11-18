@@ -4,24 +4,25 @@ import java.util.List;
 
 public abstract class AbstractLists implements Lists {
     protected final List<ListItem> items;
-
+    protected abstract String listMark();
+    protected abstract String listTex();
     public AbstractLists(List<ListItem> items) {
         this.items = items;
     }
 
-    protected void listToMarkdown(StringBuilder sb, String prefix) {
+    public void toMarkdown(StringBuilder sb) {
         for (ListItem item : items) {
-            sb.append(prefix);
+            sb.append(listMark());
             item.toMarkdown(sb);
             sb.append("\n");
         }
     }
 
-    protected void listToTex(StringBuilder sb, String prefix) {
-        sb.append("\\begin{").append(prefix).append("}");
+    public void toTex(StringBuilder sb) {
+        sb.append("\\begin{").append(listTex()).append("}");
         for (ListItem item : items) {
             item.toTex(sb);
         }
-        sb.append("\\end{").append(prefix).append("}");
+        sb.append("\\end{").append(listTex()).append("}");
     }
 }

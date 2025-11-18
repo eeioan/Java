@@ -12,7 +12,6 @@ public class Paragraph implements Lists {
     @Override
     public void toMarkdown(StringBuilder sb) {
         for (ListItemContent element : elements) {
-
             element.toMarkdown(sb);
         }
     }

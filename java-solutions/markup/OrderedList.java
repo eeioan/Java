@@ -10,6 +10,7 @@ public class OrderedList extends AbstractLists {
 
     @Override
     public void toMarkdown(StringBuilder sb) {
+
         int index = 1;
         for (ListItem item : items) {
             sb.append(index).append(". ");
@@ -18,10 +19,12 @@ public class OrderedList extends AbstractLists {
             index++;
         }
     }
-
+    protected String listMark(){
+        return null;
+    }
     @Override
-    public void toTex(StringBuilder sb) {
-        listToTex(sb, "enumerate");
+    protected String listTex(){
+        return "enumerate";
     }
 }
 

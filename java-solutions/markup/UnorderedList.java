@@ -6,16 +6,15 @@ public class UnorderedList extends AbstractLists {
     public UnorderedList(List<ListItem> items) {
         super(items);
     }
-
     @Override
-    public void toMarkdown(StringBuilder sb) {
-        listToMarkdown(sb, "* ");
+    protected String listMark() {
+        return "* ";
 
 
     }
 
     @Override
-    public void toTex(StringBuilder sb) {
-        listToTex(sb, "itemize");
+    protected String listTex(){
+        return "itemize";
     }
 }

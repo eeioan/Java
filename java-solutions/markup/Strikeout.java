@@ -9,16 +9,15 @@ public class Strikeout extends Inline {
     }
 
     @Override
-    public void toMarkdown(StringBuilder sb) {
-        sb.append("~");
-        elemToMarkdown(sb);
-        sb.append("~");
+    protected String openMark(){
+        return "~";
     }
-
     @Override
-    public void toTex(StringBuilder sb) {
-        sb.append("\\textst{");
-        elemToTex(sb);
-        sb.append("}");
+    protected String openTex(){
+        return "\\textst{";
+    }
+    @Override
+    protected String closeTex(){
+        return "}";
     }
 }
