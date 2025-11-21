@@ -18,6 +18,7 @@ public class HumanPlayer implements Player {
 
     @Override
     public Move makeMove(Position position) {
+        // NOTE: нет обработки некорректного ввода пользователя
         out.println("Your turn " + position.getTurn());
 
         out.println("Current position:\n" + position.toString());
