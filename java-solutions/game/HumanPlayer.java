@@ -18,10 +18,24 @@ public class HumanPlayer implements Player {
 
     @Override
     public Move makeMove(Position position) {
-        // NOTE: нет обработки некорректного ввода пользователя
         out.println("Your turn " + position.getTurn());
-
-        out.println("Current position:\n" + position.toString());
-        return new Move(in.nextInt() - 1, in.nextInt() - 1, position.getTurn());
+        while (true) {
+            if (in.hasNextInt()) {
+                int row = in.nextInt();
+                if (in.hasNextInt()) {
+                    int col = in.nextInt();
+                    Move move = new Move(row - 1, col - 1, position.getTurn());
+                    if (position.isValid(move)) {
+                        return move;
+                    }
+                    out.println("Ход невозможен: клетка занята или вне поля");
+                    continue;
+                }
+            }
+            in.nextLine();
+            out.println("Неправильный ввод, нужны 2 цифры");
+        }
     }
-}
+    //исправил проверку HumanPlayer на неверный ход - (вводить цифры и не промахиваться по клеткам)
+    }
+

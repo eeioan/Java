@@ -3,7 +3,7 @@ package game;
 public class TournamentPlayer {
     private final String name;
     private final Player player;
-    private final int type; // 1-Human, 2-Random, 3-Sequence
+    private final int type;
     private int wins;
     private int losses;
     private int draws;

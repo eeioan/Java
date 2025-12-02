@@ -8,8 +8,8 @@ public class GameConfig {
 
     public GameConfig(int rows, int cols, int win, BoardShape shape) {
         if (shape instanceof Rhomb){
-            this.rows = 2 * rows - 1;
-            this.cols = 2 * cols - 1;
+            this.rows = 2 * rows -1;
+            this.cols = 2 * cols -1;
             this.win = win;
             this.shape = shape;
 

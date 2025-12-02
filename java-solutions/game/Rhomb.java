@@ -7,10 +7,9 @@ public class Rhomb implements BoardShape {
 
     @Override
     public void initBoard(Cell[][] field) {
-        this.field = field;
-        int size = field.length * field[0].length - 1;
-        int m = (size + 1) / 2;
-        int center = m - 1;
+        this.field = field ;
+        int size = field.length;
+        int center = size/2 ;
 
         for (Cell[] row : field) {
             Arrays.fill(row, Cell.INVALID);
@@ -24,20 +23,17 @@ public class Rhomb implements BoardShape {
             field[i][center] = Cell.E;
         }
 
-        for (int offset = 1; offset < m; offset++) {
-            int width = m - 1 - offset;
-            for (int i = center - width; i <= center + width; i++) {
+        for (int row = 0; row < size; row++) {
+            int dist = Math.abs(row - center);
+            int width = center - dist;
 
-                if (center - offset >= 0) {
-                    field[center - offset][i] = Cell.E;
-                }
-
-                if (center + offset < size) {
-                    field[center + offset][i] = Cell.E;
-                }
+            for (int col = center - width; col <= center + width; col++) {
+                field[row][col] = Cell.E;
             }
         }
-    }
+
+        }
+
 
     @Override
     public boolean isValidCell(int row, int col) {

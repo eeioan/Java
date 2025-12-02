@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         InputRead reader = new InputRead(sc);
 
-        System.out.println("=== TIC-TAC-TOE ===");
+        System.out.println("=== КРЕСТИКИ - НОЛИКИ ===");
         System.out.println("Choose mode: 1-Single Game, 2-Tournament");
 
         int mode = reader.readInt(1, 2);
@@ -20,7 +20,7 @@ public class Main {
     }
 
     private static void playSingleGame(InputRead reader) {
-        System.out.println("\n=== SINGLE GAME ");
+        System.out.println("=== SINGLE GAME ");
 
         BoardShape shape = reader.readBoardShape();
         GameConfig config = reader.readGameConfig(shape);
@@ -34,20 +34,20 @@ public class Main {
         Board board = new TicTacToeBoard(config.rows, config.cols, config.win, config.shape);
         Game game = new Game(board, p1.getPlayer(), p2.getPlayer(), showGame);
 
-        System.out.println("\n=== GAME STARTED ===");
+        System.out.println("=== GAME STARTED ===");
         int result = game.play();
 
-        System.out.println("\n=== GAME RESULT ===");
+        System.out.println("=== GAME RESULT ===");
         switch (result) {
             case 1 -> System.out.println(p1.getName() + " wins!");
             case 2 -> System.out.println(p2.getName() + " wins!");
-            case 0 -> System.out.println("Draw!");
-            default -> System.out.println("Game ended with error");
+            case 0 -> System.out.println("Ничья!");
+            default -> System.out.println("Игра кончилась ошибкой");
         }
     }
 
     private static void playTournament(InputRead reader) {
-        System.out.println("\n=== TOURNAMENT ===");
+        System.out.println("=== TOURNAMENT ===");
 
         BoardShape shape = reader.readBoardShape();
         GameConfig config = reader.readGameConfig(shape);
@@ -56,8 +56,8 @@ public class Main {
         boolean showSteps = reader.readShowSteps();
         boolean showAllGames = reader.readShowAllGames();
 
-        System.out.println("\n=== TOURNAMENT SETUP ===");
-        System.out.println("Board: " + config.shape.getClass().getSimpleName()); // ИСПРАВЛЕНО
+        System.out.println("=== TOURNAMENT SETUP ===");
+        System.out.println("Board: " + config.shape.getClass().getSimpleName());
         System.out.println(config);
         System.out.println("Players:");
         for (TournamentPlayer player : players) {
@@ -68,6 +68,6 @@ public class Main {
                 players, config, config.shape, showSteps, showAllGames);
         tournament.run();
 
-        System.out.println("\n=== TOURNAMENT FINISHED ===");
+        System.out.println("=== TOURNAMENT FINISHED ===");
     }
 }

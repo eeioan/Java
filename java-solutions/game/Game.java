@@ -14,6 +14,9 @@ public class Game {
     }
 
     public int play() {
+        if (log){
+            System.out.println(board);
+        }
         while (true) {
             int result1 = getResult(1, player1);
             if (result1 != -1) {
@@ -28,11 +31,12 @@ public class Game {
 
     private int getResult(int no, Player player) {
         Move move = player.makeMove(board.getPosition());
+        Result result = board.makeMove(move);
         if (log) {
             System.out.println("Player #" + no + " move: " + move);
             System.out.println(board);
         }
-        Result result = board.makeMove(move);
+
         if (result == Result.WIN) {
             return no;
         } else if (result == Result.LOSE) {

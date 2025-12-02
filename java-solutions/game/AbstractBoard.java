@@ -63,34 +63,32 @@ public abstract class AbstractBoard implements Board, Position {
     }
 
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int numberWidth = String.valueOf(Math.max(rows, cols)).length();
 
-        sb.append(" ".repeat(numberWidth + 1));
+        sb.append("   ");
         for (int col = 0; col < cols; col++) {
-            sb.append(String.format("%" + (numberWidth + 1) + "d", col + 1));
+            sb.append(String.format("%2d ", col + 1));
         }
         sb.append("\n");
 
-        sb.append(" ".repeat(numberWidth)).append("+");
+        sb.append("  +");
         for (int col = 0; col < cols; col++) {
-            sb.append("-".repeat(numberWidth + 1));
+            sb.append("---");
         }
         sb.append("\n");
 
         for (int row = 0; row < rows; row++) {
-            sb.append(String.format("%" + numberWidth + "d", row + 1)).append("|");
+            sb.append(String.format("%2d|", row + 1));
             for (int col = 0; col < cols; col++) {
                 String symbol = SYM.get(field[row][col]);
-                int padding = numberWidth - symbol.length();
-                String leftPad = " ".repeat(padding / 2);
-                String rightPad = " ".repeat(padding - padding / 2);
-                sb.append(leftPad).append(symbol).append(rightPad);
+                sb.append(" ").append(symbol).append(" ");
             }
             sb.append("\n");
         }
+
         return sb.toString();
     }
 
