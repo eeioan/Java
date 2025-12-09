@@ -1,5 +1,5 @@
-import java.util.*;
-import java.nio.charset.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class ReverseSum {
     public static void main(String[] args) {
@@ -9,22 +9,23 @@ public class ReverseSum {
 
             while (rowScanner.hasNextLine()) {
                 String line = rowScanner.nextLine();
-                
+
                 ArrayList<Integer> row = new ArrayList<>();
-                
+
                 if (!line.isEmpty()) {
                     MyScanner lineScanner = new MyScanner(line, StandardCharsets.UTF_8);
-                    
+
                     while (lineScanner.hasNext()) {
                         String token = lineScanner.next();
                         try {
                             int num = Integer.parseInt(token);
                             row.add(num);
-                        } catch (NumberFormatException ignored) {}
+                        } catch (NumberFormatException ignored) {
+                        }
                     }
                     lineScanner.close();
                 }
-                
+
                 matrix.add(row);
             }
             rowScanner.close();
@@ -55,7 +56,7 @@ public class ReverseSum {
                 }
                 System.out.println();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
     }

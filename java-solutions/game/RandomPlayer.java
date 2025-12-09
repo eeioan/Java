@@ -3,7 +3,7 @@ package game;
 import java.util.Random;
 
 public class RandomPlayer implements Player {
-    private Random random = new Random();
+    private final Random random = new Random();
 
 
     @Override

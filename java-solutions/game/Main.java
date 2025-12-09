@@ -1,6 +1,7 @@
 package game;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,7 +32,7 @@ public class Main {
 
         boolean showGame = reader.readYesNo("Show game moves?");
 
-        Board board = new TicTacToeBoard(config.rows, config.cols, config.win, config.shape);
+        Board board = new TicTacToeBoard(config.rows(), config.cols(), config.win(), config.shape());
         Game game = new Game(board, p1.getPlayer(), p2.getPlayer(), showGame);
 
         System.out.println("=== GAME STARTED ===");
@@ -57,7 +58,7 @@ public class Main {
         boolean showAllGames = reader.readShowAllGames();
 
         System.out.println("=== TOURNAMENT SETUP ===");
-        System.out.println("Board: " + config.shape.getClass().getSimpleName());
+        System.out.println("Board: " + config.shape().getClass().getSimpleName());
         System.out.println(config);
         System.out.println("Players:");
         for (TournamentPlayer player : players) {
@@ -65,7 +66,7 @@ public class Main {
         }
 
         TournamentManager tournament = new TournamentManager(
-                players, config, config.shape, showSteps, showAllGames);
+                players, config, config.shape(), showSteps, showAllGames);
         tournament.run();
 
         System.out.println("=== TOURNAMENT FINISHED ===");

@@ -54,8 +54,8 @@ public class TournamentManager {
             if (showSteps) {
                 System.out.println("Match: " + pair);
             }
-            TournamentPlayer winner = playMatch(pair.getPlayer1(), pair.getPlayer2());
-            TournamentPlayer loser = (winner == pair.getPlayer1()) ? pair.getPlayer2() : pair.getPlayer1();
+            TournamentPlayer winner = playMatch(pair.player1(), pair.player2());
+            TournamentPlayer loser = (winner == pair.player1()) ? pair.player2() : pair.player1();
             winners.add(winner);
             losers.add(loser);
         }
@@ -68,7 +68,7 @@ public class TournamentManager {
     }
 
     private TournamentPlayer playMatch(TournamentPlayer p1, TournamentPlayer p2) {
-        Board board = new TicTacToeBoard(config.rows, config.cols, config.win, shape);
+        Board board = new TicTacToeBoard(config.rows(), config.cols(), config.win(), shape);
         Game game = new Game(board, p1.getPlayer(), p2.getPlayer(), showAllGames);
         int result = game.play();
         if (result == 1) {

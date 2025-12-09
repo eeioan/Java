@@ -1,34 +1,39 @@
 package expression;
-import java.util.Objects;
-public class Const implements ExpressionM {
-    private int value;
-    private long longValue;
-    private boolean valType;
 
-    public Const(int value){
+import expression.parser.ExpressionM;
+
+import java.util.Objects;
+
+public class Const implements ExpressionM {
+    private final int value;
+    private final long longValue;
+    private final boolean valType;
+
+    public Const(int value) {
         this.value = value;
         this.longValue = value;
         this.valType = false;
     }
 
-    public Const(long value){
+    public Const(long value) {
         this.value = (int) value;
         this.longValue = value;
 
         this.valType = true;
     }
+
     @Override
-    public int evaluate(int x, int y, int z){
+    public int evaluate(int x, int y, int z) {
         return value;
     }
 
     @Override
-    public int evaluate(int x){
+    public int evaluate(int x) {
         return value;
     }
 
     @Override
-    public long evaluateL(long x, long y, long z){
+    public long evaluateL(long x, long y, long z) {
         return longValue;
     }
 
@@ -44,6 +49,7 @@ public class Const implements ExpressionM {
         }
         return false;
     }
+
     @Override
     public int hashCode() {
         return valType ? Long.hashCode(longValue) : Integer.hashCode(value);

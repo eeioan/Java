@@ -17,19 +17,49 @@ public class TournamentPlayer {
         this.draws = 0;
     }
 
-    public void addWin() { wins++; }
-    public void addLoss() { losses++; }
-    public void addDraw() { draws++; }
+    public void addWin() {
+        wins++;
+    }
 
-    public int getPoints() { return wins * 2 + draws; }
-    public int getGamesPlayed() { return wins + losses + draws; }
+    public void addLoss() {
+        losses++;
+    }
 
-    public String getName() { return name; }
-    public Player getPlayer() { return player; }
-    public int getType() { return type; }
-    public int getWins() { return wins; }
-    public int getLosses() { return losses; }
-    public int getDraws() { return draws; }
+    public void addDraw() {
+        draws++;
+    }
+
+    public int getPoints() {
+        return wins * 2 + draws;
+    }
+
+    public int getGamesPlayed() {
+        return wins + losses + draws;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public int getDraws() {
+        return draws;
+    }
 
     public String getTypeString() {
         return switch (type) {

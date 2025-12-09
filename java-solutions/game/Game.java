@@ -14,7 +14,7 @@ public class Game {
     }
 
     public int play() {
-        if (log){
+        if (log) {
             System.out.println(board);
         }
         while (true) {

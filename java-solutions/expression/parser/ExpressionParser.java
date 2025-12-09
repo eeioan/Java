@@ -1,4 +1,5 @@
 package expression.parser;
+
 import expression.*;
 
 public class ExpressionParser extends BaseParser implements TripleParser {
@@ -73,7 +74,7 @@ public class ExpressionParser extends BaseParser implements TripleParser {
         skipWS();
 
         if (take('-')) {
-            if (between('0','9')) {
+            if (between('0', '9')) {
                 return parseNumber("-");
             }
             return new Negate(parseFactor());

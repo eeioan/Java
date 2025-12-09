@@ -1,13 +1,18 @@
 package game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class InputRead {
     private final Scanner sc;
+
     public InputRead(Scanner sc) {
         this.sc = sc;
     }
+
     BoardShape shape;
+
     public BoardShape readBoardShape() {
         System.out.println("Choose board shape: 1-Rhomb, 2-Rectangle");
         while (true) {
@@ -39,22 +44,23 @@ public class InputRead {
                 int rows = sc.nextInt();
                 int cols = sc.nextInt();
                 int win = sc.nextInt();
-                if (shape instanceof Rhomb){
-                    if (rows > 0 && cols > 0 && win > 0 && win <= Math.max(2*rows-1, 2*cols-1)) {
+                if (shape instanceof Rhomb) {
+                    if (rows > 0 && cols > 0 && win > 0 && win <= Math.max(2 * rows - 1, 2 * cols - 1)) {
                         return new GameConfig(rows, cols, win, shape);
                     }
-                }else if (shape instanceof Square) {
+                } else if (shape instanceof Square) {
                     if (rows > 0 && cols > 0 && win > 0 && win <= Math.max(rows, cols)) {
                         return new GameConfig(rows, cols, win, shape);
-                        }
                     }
-                    System.out.println("Invalid parameters! win must be <= max(rows,cols). Try again:");
-                } catch (Exception e) {
-                    System.out.println("Invalid input! Enter three positive numbers:");
-                    sc.nextLine();
                 }
+                System.out.println("Invalid parameters! win must be <= max(rows,cols). Try again:");
+            } catch (Exception e) {
+                System.out.println("Invalid input! Enter three positive numbers:");
+                sc.nextLine();
             }
         }
+    }
+
     public int readInt(int min, int max) {
         while (true) {
             try {

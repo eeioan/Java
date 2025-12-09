@@ -1,4 +1,6 @@
-package expression;
+package expression.parser;
+
+import expression.CharSource;
 
 public class StringSource implements CharSource {
     private final String string;

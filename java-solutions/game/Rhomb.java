@@ -7,9 +7,9 @@ public class Rhomb implements BoardShape {
 
     @Override
     public void initBoard(Cell[][] field) {
-        this.field = field ;
+        this.field = field;
         int size = field.length;
-        int center = size/2 ;
+        int center = size / 2;
 
         for (Cell[] row : field) {
             Arrays.fill(row, Cell.INVALID);
@@ -32,7 +32,7 @@ public class Rhomb implements BoardShape {
             }
         }
 
-        }
+    }
 
 
     @Override

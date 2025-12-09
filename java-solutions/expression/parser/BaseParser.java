@@ -1,7 +1,9 @@
-package expression;
+package expression.parser;
+
+import expression.CharSource;
 
 public abstract class BaseParser {
-    protected CharSource source;
+    protected expression.CharSource source;
     protected char ch;
     public static final char END = (char) -1;
 
@@ -48,6 +50,7 @@ public abstract class BaseParser {
     protected boolean between(char start, char end) {
         return start <= ch && ch <= end;
     }
+
     protected RuntimeException error(String message) {
         return source.error(message);
     }

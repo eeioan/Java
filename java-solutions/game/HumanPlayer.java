@@ -4,8 +4,8 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class HumanPlayer implements Player {
-    private Scanner in;
-    private PrintStream out;
+    private final Scanner in;
+    private final PrintStream out;
 
     public HumanPlayer(Scanner in, PrintStream out) {
         this.in = in;
@@ -37,5 +37,5 @@ public class HumanPlayer implements Player {
         }
     }
     //исправил проверку HumanPlayer на неверный ход - (вводить цифры и не промахиваться по клеткам)
-    }
+}
 

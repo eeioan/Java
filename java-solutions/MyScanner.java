@@ -9,7 +9,7 @@ public class MyScanner implements AutoCloseable {
     private int bufferSize;
     private static final int BUFFER_CAPACITY = 8192;
     private boolean closed;
-    private boolean isSystemIn;
+    private final boolean isSystemIn;
 
     public MyScanner(InputStream inputStream, Charset charset) {
         this.reader = new InputStreamReader(inputStream, charset);
@@ -102,10 +102,7 @@ public class MyScanner implements AutoCloseable {
         }
 
         int type = Character.getType(c);
-        if (type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION) {
-            return true;
-        }
-        return false;
+        return type == Character.START_PUNCTUATION || type == Character.END_PUNCTUATION;
     }
 
     private void skipDelimiters() {
@@ -142,18 +139,18 @@ public class MyScanner implements AutoCloseable {
             char first = peekChar();
             if (first == '-' || first == '+') {
                 int savedPos = bufferPos;
-                readChar(); 
-                
+                readChar();
+
                 if (!hasMoreChars()) {
                     bufferPos = savedPos;
                     return false;
                 }
-                
+
                 char next = peekChar();
                 bufferPos = savedPos;
                 return Character.isDigit(next);
             }
-            
+
             return Character.isDigit(first);
         } catch (Exception e) {
             close();

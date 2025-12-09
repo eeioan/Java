@@ -25,6 +25,7 @@ public abstract class AbstractBoard implements Board, Position {
         this.field = new Cell[rows][cols];
         shape.initBoard(field);
     }
+
     public int getRows() {
         return rows;
     }
@@ -41,6 +42,7 @@ public abstract class AbstractBoard implements Board, Position {
     public Position getPosition() {
         return this;
     }
+
     @Override
     public Cell getCell(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
@@ -56,12 +58,11 @@ public abstract class AbstractBoard implements Board, Position {
 
     @Override
     public boolean isValid(Move move) {
-        int row = move.getRow(), col = move.getCol();
+        int row = move.row(), col = move.col();
         return row >= 0 && row < rows && col >= 0 && col < cols &&
-                field[row][col] == Cell.E && move.getCell() == turn &&
+                field[row][col] == Cell.E && move.cell() == turn &&
                 shape.isValidCell(row, col);
     }
-
 
 
     @Override
@@ -93,7 +94,7 @@ public abstract class AbstractBoard implements Board, Position {
     }
 
     protected boolean checkWin(int row, int col, Cell cell) {
-        int[][] directions = {{1,0}, {0,1}, {1,1}, {1,-1}};
+        int[][] directions = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
         for (int[] dir : directions) {
             int count = 1 + countInDirection(row, col, dir[0], dir[1], cell)
                     + countInDirection(row, col, -dir[0], -dir[1], cell);

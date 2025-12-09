@@ -16,10 +16,10 @@ public final class Operations {
 
     public static final Operation NEGATE = unary("-", 1, a -> -a);
     @SuppressWarnings("Convert2MethodRef")
-    public static final Operation ADD       = binary("+", 1600, (a, b) -> a + b);
-    public static final Operation SUBTRACT  = binary("-", 1602, (a, b) -> a - b);
-    public static final Operation MULTIPLY  = binary("*", 2001, (a, b) -> a * b);
-    public static final Operation DIVIDE    = binary("/", 2002, (a, b) -> b == 0 ? Reason.DBZ.error() : a / b);
+    public static final Operation ADD = binary("+", 1600, (a, b) -> a + b);
+    public static final Operation SUBTRACT = binary("-", 1602, (a, b) -> a - b);
+    public static final Operation MULTIPLY = binary("*", 2001, (a, b) -> a * b);
+    public static final Operation DIVIDE = binary("/", 2002, (a, b) -> b == 0 ? Reason.DBZ.error() : a / b);
 
     // === Bitwise operations
 
@@ -77,7 +77,7 @@ public final class Operations {
     }
 
     private static long ceiling(final long a) {
-        return (a >= 0 ? a + FLOOR_CEILING_STEP - 1: a) / FLOOR_CEILING_STEP * FLOOR_CEILING_STEP;
+        return (a >= 0 ? a + FLOOR_CEILING_STEP - 1 : a) / FLOOR_CEILING_STEP * FLOOR_CEILING_STEP;
     }
 
     public static final int FLOOR_CEILING_STEP = 1000;
@@ -129,7 +129,7 @@ public final class Operations {
 
     private static final Reason NEG_LOG = new Reason("Logarithm of negative value");
     public static final Operation LOG_2
-            = unary("log₂", 1, NEG_LOG.less(1, a-> (long) (Math.log(a) / Math.log(2))));
+            = unary("log₂", 1, NEG_LOG.less(1, a -> (long) (Math.log(a) / Math.log(2))));
 
     private static final Reason NEG_POW = new Reason("Exponentiation to negative power");
     public static final Operation POW_2
@@ -174,5 +174,6 @@ public final class Operations {
     }
 
     @FunctionalInterface
-    public interface Operation extends Consumer<ParserTester> {}
+    public interface Operation extends Consumer<ParserTester> {
+    }
 }

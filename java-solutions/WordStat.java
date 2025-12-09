@@ -1,6 +1,9 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WordStat {
     public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class WordStat {
             List<String> wordOrder = new ArrayList<>();
 
             File file = new File(inputFile);
-            
+
             try (MyScanner scanner = new MyScanner(file)) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
@@ -51,7 +54,7 @@ public class WordStat {
 
                         if (!word.isEmpty()) {
                             String wordStr = word.toString().toLowerCase();
-                            
+
                             if (!wordCount.containsKey(wordStr)) {
                                 wordOrder.add(wordStr);
                                 wordCount.put(wordStr, 1);
@@ -79,8 +82,8 @@ public class WordStat {
     }
 
     private static boolean isWordChar(char c) {
-        return Character.isLetter(c) || 
-               Character.getType(c) == Character.DASH_PUNCTUATION ||
-               c == '\'' || c == '-' || c == '—';
+        return Character.isLetter(c) ||
+                Character.getType(c) == Character.DASH_PUNCTUATION ||
+                c == '\'' || c == '-' || c == '—';
     }
 }

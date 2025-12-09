@@ -2,8 +2,9 @@ package game;
 
 import java.util.Arrays;
 
-public class Square implements BoardShape{
+public class Square implements BoardShape {
     private Cell[][] field;
+
     @Override
     public void initBoard(Cell[][] field) {
         this.field = field;
@@ -13,7 +14,7 @@ public class Square implements BoardShape{
     }
 
     @Override
-    public boolean isValidCell(int row, int col){
+    public boolean isValidCell(int row, int col) {
         return field[row][col] == Cell.E;
 
     }

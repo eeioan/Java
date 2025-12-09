@@ -1,10 +1,5 @@
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.Reader;
-import java.io.Writer;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -20,7 +15,7 @@ public class WordStatLengthPrefix {
         String[] prefixes = new String[4];
         int[] counts = new int[4];
         int n = 0;
-        try (Reader reader = new InputStreamReader(new FileInputStream(inputFile), "UTF-8")) {
+        try (Reader reader = new InputStreamReader(new FileInputStream(inputFile), StandardCharsets.UTF_8)) {
             while ((read = reader.read(block)) != -1) {
                 for (int i = 0; i < read; i++) {
                     char c = block[i];
@@ -83,7 +78,7 @@ public class WordStatLengthPrefix {
         Integer[] order = new Integer[n];
         for (int i = 0; i < n; i++) order[i] = i;
         Arrays.sort(order, Comparator.comparingInt(i -> resultPrefixes[i].length()));
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8")) {
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8)) {
             for (int i : order) {
                 writer.write(resultPrefixes[i] + " " + resultCounts[i] + "\n");
             }

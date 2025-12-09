@@ -1,6 +1,9 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Wspp {
     public static void main(String[] args) {
@@ -17,10 +20,10 @@ public class Wspp {
             List<String> wordOrder = new ArrayList<>();
 
             File file = new File(inputFile);
-            
+
             try (MyScanner scanner = new MyScanner(file)) {
                 int lineNumber = 1;
-                
+
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     if (line == null) {
@@ -53,7 +56,7 @@ public class Wspp {
 
                         if (word.length() > 0) {
                             String wordStr = word.toString().toLowerCase();
-                            
+
                             if (!wordStats.containsKey(wordStr)) {
                                 wordOrder.add(wordStr);
                                 wordStats.put(wordStr, new WordInfo());
@@ -67,7 +70,7 @@ public class Wspp {
                             }
                         }
                     }
-                    
+
                     lineNumber++;
                 }
             }
@@ -98,8 +101,8 @@ public class Wspp {
     }
 
     private static boolean isWordChar(char c) {
-        return Character.isLetter(c) || 
-               Character.getType(c) == Character.DASH_PUNCTUATION ||
-               c == '\'' || c == '-' || c == '—';
+        return Character.isLetter(c) ||
+                Character.getType(c) == Character.DASH_PUNCTUATION ||
+                c == '\'' || c == '-' || c == '—';
     }
 }

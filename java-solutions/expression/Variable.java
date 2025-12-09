@@ -1,4 +1,7 @@
 package expression;
+
+import expression.parser.ExpressionM;
+
 import java.util.Objects;
 
 public class Variable implements ExpressionM {
@@ -16,19 +19,28 @@ public class Variable implements ExpressionM {
     @Override
     public int evaluate(int x, int y, int z) {
         switch (name) {
-            case "x": return x;
-            case "y": return y;
-            case "z": return z;
-            default: throw new IllegalArgumentException("unknown variable: " + name);
+            case "x":
+                return x;
+            case "y":
+                return y;
+            case "z":
+                return z;
+            default:
+                throw new IllegalArgumentException("unknown variable: " + name);
         }
     }
+
     @Override
     public long evaluateL(long x, long y, long z) {
         switch (name) {
-            case "x": return x;
-            case "y": return y;
-            case "z": return z;
-            default: throw new IllegalArgumentException("unknown variable: " + name);
+            case "x":
+                return x;
+            case "y":
+                return y;
+            case "z":
+                return z;
+            default:
+                throw new IllegalArgumentException("unknown variable: " + name);
         }
     }
 
