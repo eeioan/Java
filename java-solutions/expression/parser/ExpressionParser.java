@@ -1,5 +1,5 @@
-package expression;
-import expression.parser.*;
+package expression.parser;
+import expression.*;
 
 public class ExpressionParser extends BaseParser implements TripleParser {
 
