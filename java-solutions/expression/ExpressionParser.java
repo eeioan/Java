@@ -62,7 +62,7 @@ public class ExpressionParser extends BaseParser implements TripleParser {
                 result = new Multiply(result, parseFactor());
             } else if (take('/')) {
                 result = new Divide(result, parseFactor());
-                
+
             } else {
                 return result;
             }
