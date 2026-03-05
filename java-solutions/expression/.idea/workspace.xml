@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49fe054f-ec5f-482e-bec1-2585ef609630" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Asserts.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Asserts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/BaseChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/BaseChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Either.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Either.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/ExtendedRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/ExtendedRandom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Functional.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Functional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/MainChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/MainChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Named.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Named.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Selector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/TestCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/TestCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../base/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../base/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/AbstractBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/AbstractBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/GameConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/GameConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/HumanPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/Rhomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/Rhomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/TournamentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/TournamentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../game/TournamentPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../game/TournamentPlayer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="35yH7WJCbkh9Jl69xJxiG7Gwpvf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/prog-intro/Expression"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\prog-intro\Expression" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="expression.ExpressionTest" />
+      <module name="Expression" />
+      <option name="PROGRAM_PARAMETERS" value="Base" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49fe054f-ec5f-482e-bec1-2585ef609630" name="Changes" comment="" />
+      <created>1764075226594</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764075226594</updated>
+    </task>
+    <servers />
+  </component>
+</project>
